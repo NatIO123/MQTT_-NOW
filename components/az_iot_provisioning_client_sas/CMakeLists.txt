@@ -1,0 +1,11 @@
+idf_component_register(SRCS "az_iot_provisioning_client_sas.c"
+                    INCLUDE_DIRS "include"
+                    REQUIRES "az_precondition"
+                    REQUIRES "az_span"
+                    REQUIRES "az_log_internal"
+                    REQUIRES "az_precondition_internal"
+                    REQUIRES "az_result_internal"
+                    REQUIRES "az_span_internal"
+                    REQUIRES "az_iot_provisioning_client"
+                    REQUIRES "az_iot_common_internal"
+                    REQUIRES "_az_cfg")

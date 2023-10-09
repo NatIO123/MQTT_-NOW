@@ -1,0 +1,11 @@
+idf_component_register(SRCS "az_log.c"
+                    INCLUDE_DIRS "include"
+                    REQUIRES "az_result"
+                    REQUIRES "az_span"
+                    REQUIRES "az_config"
+                    REQUIRES "az_http"
+                    REQUIRES "az_http_transport"
+                    REQUIRES "az_http_internal"
+                    REQUIRES "az_log_internal"
+                    REQUIRES "_az_cfg"
+                    REQUIRES "_az_cfg_prefix")

@@ -1,0 +1,11 @@
+idf_component_register(SRCS "az_http_policy_logging.c"
+                    INCLUDE_DIRS "include"
+                    REQUIRES "az_http_policy_logging_private"
+                    REQUIRES "az_span_private"
+                    REQUIRES "az_http_transport"
+                    REQUIRES "az_platform"
+                    REQUIRES "az_http_internal"
+                    REQUIRES "az_log_internal"
+                    REQUIRES "az_result_internal"
+                    REQUIRES "az_span_internal"
+                    REQUIRES "_az_cfg")

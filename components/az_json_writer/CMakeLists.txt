@@ -1,0 +1,9 @@
+idf_component_register(SRCS "az_json_writer.c"
+                    INCLUDE_DIRS "include"
+                    REQUIRES "az_hex_private"
+                    REQUIRES "az_json_private"
+                    REQUIRES "az_span_private"
+                    REQUIRES "az_json"
+                    REQUIRES "az_result_internal"
+                    REQUIRES "az_span_internal"
+                    REQUIRES "_az_cfg")
