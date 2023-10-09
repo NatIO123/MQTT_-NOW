@@ -479,11 +479,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_config_internal/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
   include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_context/cmake_install.cmake")
 endif()
 
@@ -539,62 +534,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_credentials_internal/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_header_validation_private/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_pipeline/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_private/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_policy/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_policy_logging_private/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_policy_logging/cmake_install.cmake")
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_common_internal/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_retry_internal/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_policy_retry/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_request/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_response/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_common_internal/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
@@ -630,6 +575,71 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/Azure_IoT/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/Azure_IoT_PnP_Template/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_config_internal/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_credentials_internal/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_header_validation_private/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_pipeline/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_private/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_policy/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_policy_logging_private/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_policy_logging/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_policy_retry/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_request/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_http_response/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
@@ -700,5 +710,10 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/azure_ca/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/iot_configs/cmake_install.cmake")
 endif()
 
