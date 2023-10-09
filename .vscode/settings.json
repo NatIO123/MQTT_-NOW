@@ -12,7 +12,7 @@
         "interface/ftdi/esp32_devkitj_v1.cfg",
         "target/esp32.cfg"
     ],
-    "idf.portWin": "COM4",
+    "idf.portWin": "COM6",
     "idf.pythonBinPathWin": "C:\\esp\\.espressif\\python_env\\idf5.1_py3.8_env\\Scripts\\python.exe",
     "idf.toolsPathWin": "C:\\esp\\.espressif",
     "files.associations": {
@@ -50,6 +50,9 @@
         "az_iot_adu_internal.h": "c",
         "az_iot_common.h": "c",
         "az_iot_common_internal.h": "c",
-        "sockets.h": "c"
-    }
+        "sockets.h": "c",
+        "mqtt_client.h": "c",
+        "time.h": "c"
+    },
+    "idf.flashType": "UART"
 }

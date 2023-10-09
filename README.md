@@ -75,3 +75,48 @@ luego de esto se guarda el cambio y se debe dar clic a la opcion ESP-IDF FULL CL
 # LIBRERIAS DE AZURE_IOT_CENTRAL.
 
 En este codigo se contruyen los componentes necesarios para desarrollar un cliente mqtt que se aprovisiona a Azure IoT central es importante resaltar que cada una de las librerias son escenciales para la creacion de una plantilla o "Azure_PnP_Template" el cual es un modelo que permite desarrollar aplicaciones IoT de forma rapida y sencilla en el lenguaje de C.
+
+# DESCRIPCION DE CODIGO DE APROVISIONAMIENTO INTEGRANDO MQTT + AZURE + ESP_NOW
+Inicialmente se incluyen todas la librerias necesarias para usar los recursos de azure como componentes esp-idf
+
+#include "stdio.h"
+#include "stdint.h"
+#include "stddef.h"
+#include "string.h"
+#include "esp_wifi.h"
+#include "esp_now.h" ---> Para recibir informacion de un nodo ESP_NOW
+#include "esp_system.h"
+#include "nvs_flash.h"
+#include "esp_event.h"
+#include "esp_netif.h"
+#include "protocol_examples_common.h"
+
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/semphr.h"
+#include "freertos/queue.h"
+
+#include "lwip/sockets.h"
+#include "lwip/dns.h"
+#include "lwip/netdb.h"
+
+#include "esp_log.h"
+#include "mqtt_client.h"
+#include "time.h"
+
+#include "az_core.h"
+#include "az_iot.h"
+#include "azure_ca.h"
+
+#include "mbedtls/base64.h" -----> Librerias para gestionar la seguridad de conexion TLS base64 
+#include "mbedtls/md.h"
+#include "mbedtls/sha256.h"
+
+#include "Azure_IoT.h" -----------> Archivos para la implementacion de plantillas para una aplicacion IoT Central P&P.
+#include "Azure_IoT_PnP_Template.h"
+#include "iot_configs.h"
+
+>>Este es el manejador de eventos mqtt que usaremos del framework para el envio de datos a Azure IoT central.
+<static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)>
+
+
