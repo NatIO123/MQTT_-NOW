@@ -162,7 +162,7 @@ static esp_err_t esp_mqtt_event_handler(esp_mqtt_event_handle_t event)
         mqtt_message_t mqtt_message;
         mqtt_message.topic = az_span_create((uint8_t *)event->topic, event->topic_len);
         mqtt_message.payload = az_span_create((uint8_t *)event->data, event->data_len);
-        //mqtt_message.qos = MQTT_QOS_0; // Ajusta la calidad de servicio según sea necesario
+        // mqtt_message.qos = MQTT_QOS_0; // Ajusta la calidad de servicio según sea necesario
 
         if (azure_iot_mqtt_client_message_received(&azure_iot, &mqtt_message) != 0)
         {
@@ -274,10 +274,10 @@ static int mqtt_client_init_function(
     mqtt_broker_uri_span = az_span_copy(mqtt_broker_uri_span, mqtt_client_config->address);
     az_span_copy_u8(mqtt_broker_uri_span, null_terminator);
 
-    //mqtt_config.uri = mqtt_broker_uri;
-    //mqtt_config.port = mqtt_client_config->port;
-    //mqtt_config.client_id = (const char *)az_span_ptr(mqtt_client_config->client_id);
-    //mqtt_config.username = (const char *)az_span_ptr(mqtt_client_config->username);
+    // mqtt_config.uri = mqtt_broker_uri;
+    // mqtt_config.port = mqtt_client_config->port;
+    // mqtt_config.client_id = (const char *)az_span_ptr(mqtt_client_config->client_id);
+    // mqtt_config.username = (const char *)az_span_ptr(mqtt_client_config->username);
 
 #ifdef IOT_CONFIG_USE_X509_CERT
     LogInfo("MQTT client using X509 Certificate authentication");
@@ -555,6 +555,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     {
     case MQTT_EVENT_CONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
+        //LogInfo("MQTT client connected (session_present=%d).", event->session_present);
         msg_id = esp_mqtt_client_publish(client, "/my_topic/qos1", "data_3", 0, 1, 0);
         ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
 
@@ -566,15 +567,30 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
 
         msg_id = esp_mqtt_client_unsubscribe(client, "/my_topic/qos1");
         ESP_LOGI(TAG, "sent unsubscribe successful, msg_id=%d", msg_id);
+
+        //if (azure_iot_mqtt_client_connected(&azure_iot) != 0)
+        //{
+        //    LogError("azure_iot_mqtt_client_connected failed.");
+        //}
         break;
     case MQTT_EVENT_DISCONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
+
+        //if (azure_iot_mqtt_client_disconnected(&azure_iot) != 0)
+        //{
+        //    LogError("azure_iot_mqtt_client_disconnected failed.");
+        //}
+
         break;
 
     case MQTT_EVENT_SUBSCRIBED:
         ESP_LOGI(TAG, "MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
         msg_id = esp_mqtt_client_publish(client, "/my_topic/qos0", "data", 0, 0, 0);
         ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
+        //if (azure_iot_mqtt_client_subscribe_completed(&azure_iot, event->msg_id) != 0)
+        //{
+        //    LogError("azure_iot_mqtt_client_subscribe_completed failed.");
+        //}
         break;
     case MQTT_EVENT_UNSUBSCRIBED:
         ESP_LOGI(TAG, "MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
@@ -583,19 +599,33 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         ESP_LOGI(TAG, "MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
         break;
     case MQTT_EVENT_DATA:
+        //LogInfo("MQTT message received.");
+        //mqtt_message_t mqtt_message;
+        //mqtt_message.topic = az_span_create((uint8_t *)event->topic, event->topic_len);
+        //mqtt_message.payload = az_span_create((uint8_t *)event->data, event->data_len);
+        //mqtt_message.qos = mqtt_qos_at_most_once;
+
+        //if (azure_iot_mqtt_client_message_received(&azure_iot, &mqtt_message) != 0)
+        //{
+        //    LogError(
+        //        "azure_iot_mqtt_client_message_received failed (topic=%.*s).",
+        //        event->topic_len,
+        //        event->topic);
+        //}
         ESP_LOGI(TAG, "MQTT_EVENT_DATA");
         printf("TOPIC=%.*s\r\n", event->topic_len, event->topic);
         printf("DATA=%.*s\r\n", event->data_len, event->data);
         break;
     case MQTT_EVENT_ERROR:
         ESP_LOGI(TAG, "MQTT_EVENT_ERROR");
+        /*
         if (event->error_handle->error_type == MQTT_ERROR_TYPE_TCP_TRANSPORT)
         {
             log_error_if_nonzero("reported from esp-tls", event->error_handle->esp_tls_last_esp_err);
             log_error_if_nonzero("reported from tls stack", event->error_handle->esp_tls_stack_err);
             log_error_if_nonzero("captured as transport's socket errno", event->error_handle->esp_transport_sock_errno);
             ESP_LOGI(TAG, "Last errno string (%s)", strerror(event->error_handle->esp_transport_sock_errno));
-        }
+        }*/
         break;
     default:
         ESP_LOGI(TAG, "Other event id:%d", event->event_id);
@@ -605,21 +635,21 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
 
 static void mqtt_app_start(void)
 {
-  int result;
-  esp_mqtt_client_config_t mqtt_config;
-  memset(&mqtt_config, 0, sizeof(mqtt_config));
+    /*int result;
+    esp_mqtt_client_config_t mqtt_cfg;
+    memset(&mqtt_cfg, 0, sizeof(mqtt_config));*/
 
-    esp_mqtt_client_config_t mqtt_client = {
-        .broker.address.uri = mqtt_broker_uri,
+    esp_mqtt_client_config_t mqtt_cfg = {
+        .broker.address.uri = CONFIG_BROKER_URL,
 
     };
 #if CONFIG_BROKER_URL_FROM_STDIN
     char line[128];
 
-    if (strcmp(mqtt_client.broker.address.uri, "FROM_STDIN") == 0)
+    if (strcmp(mqtt_cfg.broker.address.uri, "FROM_STDIN") == 0)
     {
         int count = 0;
-        printf("https://natio.azureiotcentral.com\n");
+        printf("Please enter url of mqtt broker\n");
         while (count < 128)
         {
             int c = fgetc(stdin);
@@ -635,7 +665,7 @@ static void mqtt_app_start(void)
             }
             vTaskDelay(10 / portTICK_PERIOD_MS);
         }
-        mqtt_client.broker.address.uri = line;
+        mqtt_cfg.broker.address.uri = line;
         printf("Broker url: %s\n", line);
     }
     else
@@ -645,9 +675,9 @@ static void mqtt_app_start(void)
     }
 #endif /* CONFIG_BROKER_URL_FROM_STDIN */
 
-    esp_mqtt_client_handle_t client = esp_mqtt_client_init(&mqtt_client);
-    /* The last argument may be used to pass data to the event handler, in this example mqtt_event_handler*/ 
-    esp_mqtt_client_register_event(client, ESP_EVENT_ANY_ID, esp_mqtt_event_handler, NULL);
+    esp_mqtt_client_handle_t client = esp_mqtt_client_init(&mqtt_cfg); //////////////// estructura de cliente.
+    /* The last argument may be used to pass data to the event handler, in this example mqtt_event_handler*/
+    esp_mqtt_client_register_event(client, ESP_EVENT_ANY_ID, mqtt_event_handler, NULL);
     esp_mqtt_client_start(client);
 }
 
@@ -676,6 +706,7 @@ void app_main(void)
     ESP_ERROR_CHECK(example_connect());
     // ESP_ERROR_CHECK(configure_azure_iot());
     mqtt_app_start();
+    /*
     if (esp_wifi_connect() != ESP_OK)
     {
         if (!azure_initial_connect)
@@ -726,8 +757,10 @@ void app_main(void)
         }
 
         azure_iot_do_work(&azure_iot);
+        setup();
+
 
         // configure_azure_iot();
         // setup(); ///////// funcion que llama a los metodos de Azure IoT central
-    }
+    }*/
 }
