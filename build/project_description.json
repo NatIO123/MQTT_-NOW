@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "MQTT_+NOW",
-    "project_version":    "b72d6ee-dirty",
+    "project_version":    "a2d801a-dirty",
     "project_path":       "C:/Users/jhon9/MQTT_+NOW",
     "idf_path":           "C:/Users/jhon9/esp/esp-idf",
     "build_dir":          "C:/Users/jhon9/MQTT_+NOW/build",
