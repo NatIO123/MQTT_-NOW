@@ -17,6 +17,7 @@
 #include "nvs_flash.h"
 #include "esp_event.h"
 #include "esp_netif.h"
+#include "esp_eth.h"
 #include "protocol_examples_common.h"
 
 #include "freertos/FreeRTOS.h"
@@ -567,6 +568,59 @@ void app_main(void)
     ESP_ERROR_CHECK(example_connect());
     // ESP_ERROR_CHECK(configure_azure_iot());
     mqtt_app_start();
-    setup(); ///////// funcion que llama a los metodos de Azure IoT central 
-    
+    if (esp_wifi_connect() != ESP_OK)
+    {
+        if (!azure_initial_connect)
+        {
+
+            configure_azure_iot();
+        }
+
+        azure_iot_start(&azure_iot);
+        // La conexión Wi-Fi no está establecida o ha fallado.
+        // Realiza acciones para conectarte a una red Wi-Fi.
+    }
+    else
+
+    {
+        switch (azure_iot_get_status(&azure_iot)) ///////////// switch para los diferentes estados de conexion de aprovisionamiento a Azure.
+        {
+        case azure_iot_connected:
+        azure_initial_connect= true;
+        if (send_device_info)
+        {
+            (void)azure_pnp_send_device_info(&azure_iot, properties_request_id++);
+            send_device_info=false; // solo es necesario una vez
+        }
+        else if (azure_pnp_send_telemetry(&azure_iot) !=0)
+        {
+            ESP_LOGE(TAG,"Fallo en el envio de telemtria");
+            
+        }      
+        
+           // Código para el estado 'azure_iot_connected'
+            break;
+
+        case azure_iot_error:
+        ESP_LOGE(TAG,"Fallo en el envio de telemtria");
+        azure_iot_stop(&azure_iot);
+            // Código para el estado 'azure_iot_error'
+            break;
+
+        case azure_iot_disconnected:
+        esp_wifi_stop();
+
+            // Código para el estado 'azure_iot_disconnected'
+            // Puedes agregar aquí acciones específicas cuando se desconecta
+            break;
+
+        default:
+            break;
+        }
+
+        azure_iot_do_work(&azure_iot);
+
+        // configure_azure_iot();
+        // setup(); ///////// funcion que llama a los metodos de Azure IoT central
+    }
 }
