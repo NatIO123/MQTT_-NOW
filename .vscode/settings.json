@@ -52,7 +52,8 @@
         "az_iot_common_internal.h": "c",
         "sockets.h": "c",
         "mqtt_client.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "base64.h": "c"
     },
     "idf.flashType": "UART"
 }

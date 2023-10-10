@@ -90,6 +90,7 @@ C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_retry_internal/libaz_retry_internal.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_common/libaz_iot_common.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client/libaz_iot_hub_client.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_adu_internal/libaz_iot_adu_internal.a
+C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/libaz_iot_hub_client_twin.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_properties/libaz_iot_hub_client_properties.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_adu_client/libaz_iot_adu_client.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_provisioning_client/libaz_iot_provisioning_client.a
@@ -112,7 +113,6 @@ C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_commands/libaz_iot_hub_
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_methods/libaz_iot_hub_client_methods.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_sas/libaz_iot_hub_client_sas.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_telemetry/libaz_iot_hub_client_telemetry.a
-C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/libaz_iot_hub_client_twin.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_provisioning_client_sas/libaz_iot_provisioning_client_sas.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_json_private/libaz_json_private.a
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_json_reader/libaz_json_reader.a

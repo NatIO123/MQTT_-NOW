@@ -90,6 +90,7 @@ $<TARGET_FILE:__idf_az_retry_internal>
 $<TARGET_FILE:__idf_az_iot_common>
 $<TARGET_FILE:__idf_az_iot_hub_client>
 $<TARGET_FILE:__idf_az_iot_adu_internal>
+$<TARGET_FILE:__idf_az_iot_hub_client_twin>
 $<TARGET_FILE:__idf_az_iot_hub_client_properties>
 $<TARGET_FILE:__idf_az_iot_adu_client>
 $<TARGET_FILE:__idf_az_iot_provisioning_client>
@@ -112,7 +113,6 @@ $<TARGET_FILE:__idf_az_iot_hub_client_commands>
 $<TARGET_FILE:__idf_az_iot_hub_client_methods>
 $<TARGET_FILE:__idf_az_iot_hub_client_sas>
 $<TARGET_FILE:__idf_az_iot_hub_client_telemetry>
-$<TARGET_FILE:__idf_az_iot_hub_client_twin>
 $<TARGET_FILE:__idf_az_iot_provisioning_client_sas>
 $<TARGET_FILE:__idf_az_json_private>
 $<TARGET_FILE:__idf_az_json_reader>

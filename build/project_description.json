@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "MQTT_+NOW",
-    "project_version":    "9080672-dirty",
+    "project_version":    "4625a17-dirty",
     "project_path":       "C:/Users/jhon9/MQTT_+NOW",
     "idf_path":           "C:/Users/jhon9/esp/esp-idf",
     "build_dir":          "C:/Users/jhon9/MQTT_+NOW/build",
@@ -575,7 +575,7 @@
             "dir": "C:/Users/jhon9/MQTT_+NOW/components/az_iot_hub_client_properties",
             "type": "LIBRARY",
             "lib": "__idf_az_iot_hub_client_properties",
-            "reqs": [ "az_json", "az_result", "az_span", "az_iot_hub_client", "az_precondition_internal", "_az_cfg_prefix" ],
+            "reqs": [ "az_json", "az_result", "az_span", "az_iot_hub_client", "az_precondition_internal", "az_iot_hub_client_twin", "_az_cfg_prefix" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],

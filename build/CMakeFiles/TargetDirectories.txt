@@ -817,6 +817,13 @@ C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_adu_internal/CMakeFiles/list_insta
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_adu_internal/CMakeFiles/install.dir
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_adu_internal/CMakeFiles/install/local.dir
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_adu_internal/CMakeFiles/install/strip.dir
+C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/__idf_az_iot_hub_client_twin.dir
+C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/edit_cache.dir
+C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/rebuild_cache.dir
+C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/list_install_components.dir
+C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/install.dir
+C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/install/local.dir
+C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/install/strip.dir
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_properties/CMakeFiles/__idf_az_iot_hub_client_properties.dir
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_properties/CMakeFiles/edit_cache.dir
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_properties/CMakeFiles/rebuild_cache.dir
@@ -971,13 +978,6 @@ C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_telemetry/CMakeFiles/li
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_telemetry/CMakeFiles/install.dir
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_telemetry/CMakeFiles/install/local.dir
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_telemetry/CMakeFiles/install/strip.dir
-C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/__idf_az_iot_hub_client_twin.dir
-C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/edit_cache.dir
-C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/rebuild_cache.dir
-C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/list_install_components.dir
-C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/install.dir
-C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/install/local.dir
-C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/CMakeFiles/install/strip.dir
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_provisioning_client_sas/CMakeFiles/__idf_az_iot_provisioning_client_sas.dir
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_provisioning_client_sas/CMakeFiles/edit_cache.dir
 C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_provisioning_client_sas/CMakeFiles/rebuild_cache.dir

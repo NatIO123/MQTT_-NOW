@@ -559,6 +559,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_properties/cmake_install.cmake")
 endif()
 
@@ -665,11 +670,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_telemetry/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("C:/Users/jhon9/MQTT_+NOW/build/esp-idf/az_iot_hub_client_twin/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
