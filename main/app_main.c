@@ -18,6 +18,7 @@
 #include "esp_event.h"
 #include "esp_netif.h"
 #include "esp_eth.h"
+#include "esp_http_client.h"
 #include "protocol_examples_common.h"
 
 #include "freertos/FreeRTOS.h"
@@ -36,6 +37,7 @@
 
 #include "az_core.h"
 #include "az_iot.h"
+#include "az_json.h"
 #include "azure_ca.h"
 
 #include "mbedtls/base64.h"
@@ -272,7 +274,7 @@ static int mqtt_client_init_function(
     memset(&mqtt_config, 0, sizeof(mqtt_config));
 
     az_span mqtt_broker_uri_span = AZ_SPAN_FROM_BUFFER(mqtt_broker_uri);
-    mqtt_broker_uri_span = az_span_copy(mqtt_broker_uri_span, AZ_SPAN_FROM_STR("https://natio.azureiotcentral.com"));
+    mqtt_broker_uri_span = az_span_copy(mqtt_broker_uri_span, AZ_SPAN_FROM_STR(MQTT_PROTOCOL_PREFIX));
     mqtt_broker_uri_span = az_span_copy(mqtt_broker_uri_span, mqtt_client_config->address);
     az_span_copy_u8(mqtt_broker_uri_span, null_terminator);
 
@@ -285,12 +287,15 @@ static int mqtt_client_init_function(
     LogInfo("MQTT client using X509 Certificate authentication");
     mqtt_config.client_cert_pem = IOT_CONFIG_DEVICE_CERT;
     mqtt_config.client_key_pem = IOT_CONFIG_DEVICE_CERT_PRIVATE_KEY;
-#else // Using SAS key
+#else // Using SAS key se definen las estructuras para el uso de credenciales.
 
     struct authentication_t auth;
     struct session_t mqtt_con;
     struct network_t mqtt_conf;
     struct credentials_t mqtt_confi;
+    esp_http_client_config_t mqtt_cnfi;
+    struct json_n mqtt_cfi;
+    
     auth.password = (const char *)az_span_ptr(mqtt_client_config->password);
     mqtt_con.keepalive=30;
     
@@ -303,8 +308,9 @@ static int mqtt_client_init_function(
     mqtt_con.disable_clean_session= 0;
     mqtt_conf.disable_auto_reconnect= false;
     mqtt_confi.username=NULL;
-    //mqtt_con.user_context= NULL;
-    //mqtt_con.cert_pem=(const char *)ca_pem;
+    mqtt_cnfi.cert_pem=(const char *)ca_pem;
+    mqtt_cfi.user_context= NULL;
+    
 
 
     LogInfo("MQTT client target uri set to '%s'", mqtt_broker_uri);

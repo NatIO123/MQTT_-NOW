@@ -308,7 +308,7 @@ typedef struct
   /// modified by the caller.
   int32_t total_bytes_written;
 
-  struct
+  struct json_n
   {
     /// The destination to write the JSON into.
     az_span destination_buffer;
