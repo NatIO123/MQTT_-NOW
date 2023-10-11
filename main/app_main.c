@@ -158,6 +158,8 @@ static esp_err_t esp_mqtt_event_handler(esp_mqtt_event_handle_t event)
         break;
     case MQTT_EVENT_DATA:
         ESP_LOGI(TAG, "MQTT message received.");
+        printf("TOPIC=%.*s\r\n", event->topic_len, event->topic);
+        printf("DATA=%.*s\r\n", event->data_len, event->data);
 
         mqtt_message_t mqtt_message;
         mqtt_message.topic = az_span_create((uint8_t *)event->topic, event->topic_len);
@@ -286,21 +288,24 @@ static int mqtt_client_init_function(
 #else // Using SAS key
 
     struct authentication_t auth;
+    struct session_t mqtt_con;
+    struct network_t mqtt_conf;
+    struct credentials_t mqtt_confi;
     auth.password = (const char *)az_span_ptr(mqtt_client_config->password);
-    // mqtt_config.password = (const char *)az_span_ptr(mqtt_client_config->password);
+    mqtt_con.keepalive=30;
+    
+    
 
 #endif
 
-    // auth.password=(const char *)az_span_ptr(mqtt_client_config->password);
-    // session_t.mqtt_config.keepalive=30;
-    // keepalive = 30;
+    auth.password=(const char *)az_span_ptr(mqtt_client_config->password);
+    mqtt_con.keepalive=30;
+    mqtt_con.disable_clean_session= 0;
+    mqtt_conf.disable_auto_reconnect= false;
+    mqtt_confi.username=NULL;
+    //mqtt_con.user_context= NULL;
+    //mqtt_con.cert_pem=(const char *)ca_pem;
 
-    // int esp_mqtt_client_config_t -> session_t->
-    // mqtt_config.disable_clean_session = 0;
-    // mqtt_config.disable_auto_reconnect = false;
-    // esp_mqtt_event_handle_t esp_mqtt_client_init(&mqtt_config);
-    // mqtt_config.user_context = NULL;
-    // mqtt_config.cert_pem = (const char *)ca_pem;
 
     LogInfo("MQTT client target uri set to '%s'", mqtt_broker_uri);
 
@@ -547,6 +552,9 @@ void setup()
 
 static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data) ////////////// este es el manejador de eventos mqtt que usaremos del framework para el envio de datos a Azure IoT central
 {
+    #define AZ_SPAN_FROM_BUFFER(BYTE_BUFFER) \
+    az_span_create(                      \
+        (uint8_t *)(BYTE_BUFFER), (sizeof(BYTE_BUFFER) / (_az_IS_BYTE_ARRAY(BYTE_BUFFER) ? 1 : 0)))
     ESP_LOGD(TAG, "Event dispatched from event loop base=%s, event_id=%" PRIi32 "", base, event_id);
     esp_mqtt_event_handle_t event = event_data;
     esp_mqtt_client_handle_t client = event->client;
@@ -555,7 +563,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     {
     case MQTT_EVENT_CONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
-        //LogInfo("MQTT client connected (session_present=%d).", event->session_present);
+        // LogInfo("MQTT client connected (session_present=%d).", event->session_present);
         msg_id = esp_mqtt_client_publish(client, "/my_topic/qos1", "data_3", 0, 1, 0);
         ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
 
@@ -568,18 +576,18 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         msg_id = esp_mqtt_client_unsubscribe(client, "/my_topic/qos1");
         ESP_LOGI(TAG, "sent unsubscribe successful, msg_id=%d", msg_id);
 
-        //if (azure_iot_mqtt_client_connected(&azure_iot) != 0)
+        // if (azure_iot_mqtt_client_connected(&azure_iot) != 0)
         //{
-        //    LogError("azure_iot_mqtt_client_connected failed.");
-        //}
+        //     LogError("azure_iot_mqtt_client_connected failed.");
+        // }
         break;
     case MQTT_EVENT_DISCONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
 
-        //if (azure_iot_mqtt_client_disconnected(&azure_iot) != 0)
+        // if (azure_iot_mqtt_client_disconnected(&azure_iot) != 0)
         //{
-        //    LogError("azure_iot_mqtt_client_disconnected failed.");
-        //}
+        //     LogError("azure_iot_mqtt_client_disconnected failed.");
+        // }
 
         break;
 
@@ -587,10 +595,10 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         ESP_LOGI(TAG, "MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
         msg_id = esp_mqtt_client_publish(client, "/my_topic/qos0", "data", 0, 0, 0);
         ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
-        //if (azure_iot_mqtt_client_subscribe_completed(&azure_iot, event->msg_id) != 0)
+        // if (azure_iot_mqtt_client_subscribe_completed(&azure_iot, event->msg_id) != 0)
         //{
-        //    LogError("azure_iot_mqtt_client_subscribe_completed failed.");
-        //}
+        //     LogError("azure_iot_mqtt_client_subscribe_completed failed.");
+        // }
         break;
     case MQTT_EVENT_UNSUBSCRIBED:
         ESP_LOGI(TAG, "MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
@@ -599,19 +607,25 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         ESP_LOGI(TAG, "MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
         break;
     case MQTT_EVENT_DATA:
-        //LogInfo("MQTT message received.");
-        //mqtt_message_t mqtt_message;
-        //mqtt_message.topic = az_span_create((uint8_t *)event->topic, event->topic_len);
-        //mqtt_message.payload = az_span_create((uint8_t *)event->data, event->data_len);
-        //mqtt_message.qos = mqtt_qos_at_most_once;
+        LogInfo("MQTT message received.");
+        mqtt_message_t mqtt_message;
 
-        //if (azure_iot_mqtt_client_message_received(&azure_iot, &mqtt_message) != 0)
-        //{
-        //    LogError(
-        //        "azure_iot_mqtt_client_message_received failed (topic=%.*s).",
-        //        event->topic_len,
-        //        event->topic);
-        //}
+
+
+        mqtt_message.topic = AZ_SPAN_FROM_BUFFER(event->topic);
+        mqtt_message.payload =AZ_SPAN_FROM_BUFFER(event->data);
+        mqtt_message.qos= mqtt_qos_at_most_once;
+        // mqtt_message.topic = az_span_create((uint8_t *)event->topic, event->topic_len);
+        // mqtt_message.payload = az_span_create((uint8_t *)event->data, event->data_len);
+        // mqtt_message.qos = mqtt_qos_at_most_once;
+
+         if (azure_iot_mqtt_client_message_received(&azure_iot, &mqtt_message) != 0)
+        {
+             LogError(
+                 "azure_iot_mqtt_client_message_received failed (topic=%.*s).",
+                 event->topic_len,
+                 event->topic);
+         }
         ESP_LOGI(TAG, "MQTT_EVENT_DATA");
         printf("TOPIC=%.*s\r\n", event->topic_len, event->topic);
         printf("DATA=%.*s\r\n", event->data_len, event->data);
