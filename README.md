@@ -179,6 +179,9 @@ Para crear las librerias como componentes externos de azure inicialmente se disp
 
 Dirigirse al terminal de esp-idf y escribir el siguiente comando en el terminal "cd components" para ubicarse dentro del directorio incluido en el CMakelists.txt global, luego de ello en el mismo terminal escriba el siguiente comando "idf.py create-component nombre_del_componente", posterior a esta accion se creara una carpeta con el nombre del componente dentro del directorio "components", la carpeta creada recientemente con el nombre del componente contiene una subcarpeta denominada "include" la cual contiene el header de nuestro componente o en este caso de ejemplo nombre_del_componente.h, luego encontramos un archivo denominado nombre_del_componente.c.
 
+![](instruccion.jpg)
+
+
 ### ERROR A LA HORA DE INCLUIR COMPONENTES EXTERNOS O RECIEN CREADOS EN EL ARCHIVO PRINCIPAL.
 
 Luego de haber creado nuestro primer componente lo natural sera tratar de incluir como una libreria desde el archivo ``` app_main.c ```el componente que creamos de la siguiente forma ```#include nombre_del_componente.h```, lo cual cuando construimos el proyecto nos genera un error; si revisamos detenidamente nuestro componente puede estar solicitando librerias internas de esp-idf u solicitando otro componente creado en la libreria del componente que deseamos usar en el main, para solucionar este error debemos establecer el requerimento dentro del archivo CMakelists.txt del propio componente escriibiendo el siguiente comando ```REQUIRES "az_result"``` (copiar sin los guiones y signos de mayor-menor)
@@ -223,7 +226,6 @@ Este es el manejador de eventos mqtt que usaremos del framework para el envio de
 ```
 static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)>
 ```
-![](instruccion.jpg)
 
 ## Creacion de un cliente MQTT que permita transportar telemetria a Azure.
 
